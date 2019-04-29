@@ -3,7 +3,7 @@ local execute = function(pos)
 	local meta = minetest.get_meta(pos)
 
 	local selected_sound_key = meta:get_string("selected_sound_key")
-	local def = soundblocks.sounds[selected_sound_key]
+	local def = soundblock.sounds[selected_sound_key]
 
 	if def == nil then
 		return
@@ -36,9 +36,9 @@ local execute = function(pos)
 
 end
 
-minetest.register_node("soundblocks:block", {
+minetest.register_node("soundblock:block", {
 	description = "Sound Block",
-	tiles = {"soundblocks_block.png"},
+	tiles = {"soundblock_block.png"},
 	is_ground_content = false,
 	groups = { oddly_breakable_by_hand = 1 },
 
@@ -87,12 +87,12 @@ minetest.register_node("soundblocks:block", {
     end
   }},
 
-  on_rightclick = soundblocks.showform
+  on_rightclick = soundblock.showform
 })
 
 
 minetest.register_craft({
-	output = "soundblocks:block",
+	output = "soundblock:block",
 	recipe = {
 		{"default:steel_ingot", "default:steelblock", "default:steel_ingot"},
 		{"default:steel_ingot", "default:glass",      "default:steel_ingot"},

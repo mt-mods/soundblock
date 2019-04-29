@@ -9,6 +9,6 @@ def = {
 }
 --]]
 
-soundblocks.register = function(def)
-  soundblocks.sounds[def.key] = def
+soundblock.register = function(def)
+  soundblock.sounds[def.key] = def
 end

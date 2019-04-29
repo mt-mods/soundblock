@@ -1,9 +1,9 @@
 
-soundblocks = {
+soundblock = {
   sounds = {}
 }
 
-local MP = minetest.get_modpath("soundblocks")
+local MP = minetest.get_modpath("soundblock")
 dofile(MP.."/api.lua")
 dofile(MP.."/form.lua")
 dofile(MP.."/soundblock.lua")
@@ -28,4 +28,4 @@ if minetest.get_modpath("mobs_monster") then
   dofile(MP.."/mods/mobs_monster.lua")
 end
 
-print("[OK] Soundblocks")
+print("[OK] soundblock")

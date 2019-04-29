@@ -1,13 +1,13 @@
 
 
-soundblocks.register({
+soundblock.register({
   filename = "default_glass_footstep",
   key = "default_glass_footsteps",
   name = "Glass footsteps"
 })
 
 
-soundblocks.register({
+soundblock.register({
   filenames = {
     "default_grass_footstep.1",
     "default_grass_footstep.2",
@@ -17,7 +17,7 @@ soundblocks.register({
   name = "Grass footsteps"
 })
 
-soundblocks.register({
+soundblock.register({
   filenames = {
     "default_gravel_footstep.1",
     "default_gravel_footstep.2",
@@ -27,7 +27,7 @@ soundblocks.register({
   name = "Gravel footsteps"
 })
 
-soundblocks.register({
+soundblock.register({
   filenames = {
     "default_wood_footstep.1",
     "default_wood_footstep.2"
@@ -36,7 +36,7 @@ soundblocks.register({
   name = "Wood footsteps"
 })
 
-soundblocks.register({
+soundblock.register({
   filenames = {
     "default_sand_footstep.1",
     "default_sand_footstep.2"
@@ -45,7 +45,7 @@ soundblocks.register({
   name = "Sand footsteps"
 })
 
-soundblocks.register({
+soundblock.register({
   filenames = {
     "default_metal_footstep.1",
     "default_metal_footstep.2",
@@ -56,7 +56,7 @@ soundblocks.register({
 })
 
 
-soundblocks.register({
+soundblock.register({
   filenames = {
     "default_snow_footstep.1",
     "default_snow_footstep.2",
@@ -69,13 +69,13 @@ soundblocks.register({
 })
 
 
-soundblocks.register({
+soundblock.register({
   filename = "default_chest_close",
   key = "default_chest_close",
   name = "Chest close"
 })
 
-soundblocks.register({
+soundblock.register({
   filename = "default_chest_open",
   key = "default_chest_open",
   name = "Chest open"

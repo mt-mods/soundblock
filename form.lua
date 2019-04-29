@@ -14,33 +14,33 @@ config options:
 
 --]]
 
-soundblocks.showform = function(pos, node, player)
+soundblock.showform = function(pos, node, player)
 
 	local meta = minetest.get_meta(pos)
 	local owner = meta:get_string("owner")
 	local has_override = minetest.check_player_privs(player, "protection_bypass")
 
 	-- check if plain user rightclicks
-	if player:get_player_name() ~= owner and not has_override then
+	if minetest.is_protected(pos, player:get_player_name()) and not has_override then
 		return
 	end
 
 	local selected_sound_key = meta:get_string("selected_sound_key")
-	local selected_sound = 0
+	local selected_id = 1
+	local i = 1
 
 	-- sound list
 	local sound_list = "textlist[0,1;4,6;sounds;"
-	for i,sound in ipairs(soundblocks.sounds) do
-		if selected_sound_key == sound.key then
-			selected_sound = i
+	for key, sound in pairs(soundblock.sounds) do
+		if selected_sound_key == key then
+			selected_id = i
 		end
 
-		sound_list = sound_list .. minetest.formspec_escape(sound.name)
-		if i < #soundblocks.sounds then
-			sound_list = sound_list .. ","
-		end
+		i = i + 1
+		sound_list = sound_list .. minetest.formspec_escape(sound.name) .. ","
 	end
-	sound_list = sound_list .. ";" .. selected_sound .. "]";
+	sound_list = sound_list:sub(1, #sound_list-1)
+	sound_list = sound_list .. ";" .. selected_id .. "]";
 
 	local state = meta:get_string("state")
 	local interval_min = meta:get_int("interval_min")
@@ -53,12 +53,12 @@ soundblocks.showform = function(pos, node, player)
 		--left
 		"label[0,0;Soundblock <" .. state .. ">]" ..
 
-		"field[4,1;4,1;interval_min;Interval-min;" .. interval_min ..  "]" ..
-		"field[4,2;4,1;interval_max;Interval-max;" .. interval_max ..  "]" ..
+		"field[5,1;3,1;interval_min;Interval-min;" .. interval_min ..  "]" ..
+		"field[5,2;3,1;interval_max;Interval-max;" .. interval_max ..  "]" ..
 
-		"field[4,3;4,1;gain;Gain;" .. gain ..  "]" ..
-		"field[4,4;4,1;hear_distance;Hear distance;" .. hear_distance ..  "]" ..
-		"field[4,5;4,1;randomize_position;Randomize position;" .. randomize_position ..  "]" ..
+		"field[5,3;3,1;gain;Gain;" .. gain ..  "]" ..
+		"field[5,4;3,1;hear_distance;Hear distance;" .. hear_distance ..  "]" ..
+		"field[5,5;3,1;randomize_position;Randomize position;" .. randomize_position ..  "]" ..
 
 		sound_list ..
 		"button_exit[0,7;4,1;save;Save]" ..
@@ -119,13 +119,16 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if fields.sounds then
 		parts = fields.sounds:split(":")
 		if parts[1] == "CHG" then
-			local selected_sound_name = tonumber(parts[2])
+			local selected_id = tonumber(parts[2])
+			local i = 1
 			local selected_sound_key
 
-			for i,sound in ipairs(soundblocks.sounds) do
-				if selected_sound_name == sound.name then
-					selected_sound_key = sound.key
+			for key, sound in pairs(soundblock.sounds) do
+				if selected_id == i then
+					selected_sound_key = key
 				end
+
+				i = i + 1
 			end
 
 			meta:set_string("selected_sound_key", selected_sound_key)
