@@ -16,5 +16,9 @@ if minetest.get_modpath("technic") then
   dofile(MP.."/mods/technic.lua")
 end
 
+if minetest.get_modpath("ambience") then
+  dofile(MP.."/mods/ambience.lua")
+end
+
 
 print("[OK] Soundblocks")
