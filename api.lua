@@ -1,7 +1,6 @@
 
 --[[
 def = {
-  length = 2, -- seconds
   filenames = {
     "default_glass_footstep.ogg"
   },
