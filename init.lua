@@ -12,6 +12,10 @@ if minetest.get_modpath("default") then
   dofile(MP.."/mods/default.lua")
 end
 
+if minetest.get_modpath("doors") then
+  dofile(MP.."/mods/doors.lua")
+end
+
 if minetest.get_modpath("technic") then
   dofile(MP.."/mods/technic.lua")
 end
