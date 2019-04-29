@@ -60,7 +60,7 @@ soundblocks.register({
   filenames = {
     "default_snow_footstep.1",
     "default_snow_footstep.2",
-    "default_snow_footstep.3"
+    "default_snow_footstep.3",
     "default_snow_footstep.4",
     "default_snow_footstep.5"
   },

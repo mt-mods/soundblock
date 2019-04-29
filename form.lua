@@ -29,7 +29,7 @@ soundblocks.showform = function(pos, node, player)
 	local selected_sound = 0
 
 	-- sound list
-	local sound_list = "textlist[0,1;5,6;sounds;"
+	local sound_list = "textlist[0,1;4,6;sounds;"
 	for i,sound in ipairs(soundblocks.sounds) do
 		if selected_sound_key == sound.key then
 			selected_sound = i
@@ -53,16 +53,16 @@ soundblocks.showform = function(pos, node, player)
 		--left
 		"label[0,0;Soundblock <" .. state .. ">]" ..
 
-		"field[0,2;8,1;interval_min;Interval-min;" .. interval_min ..  "]" ..
-		"field[0,2;8,1;interval_max;Interval-max;" .. interval_max ..  "]" ..
+		"field[4,1;4,1;interval_min;Interval-min;" .. interval_min ..  "]" ..
+		"field[4,2;4,1;interval_max;Interval-max;" .. interval_max ..  "]" ..
 
-		"field[0,2;8,1;gain;Gain;" .. gain ..  "]" ..
-		"field[0,2;8,1;hear_distance;Hear distance;" .. hear_distance ..  "]" ..
-		"field[0,2;8,1;randomize_position;Randomize position;" .. randomize_position ..  "]" ..
+		"field[4,3;4,1;gain;Gain;" .. gain ..  "]" ..
+		"field[4,4;4,1;hear_distance;Hear distance;" .. hear_distance ..  "]" ..
+		"field[4,5;4,1;randomize_position;Randomize position;" .. randomize_position ..  "]" ..
 
 		sound_list ..
-		"button_exit[0,7;8,1;save;Save]" ..
-		"button_exit[0,7;8,1;toggle_state;Toggle state]"
+		"button_exit[0,7;4,1;save;Save]" ..
+		"button_exit[4,7;4,1;toggle_state;Toggle state]"
 
 	minetest.show_formspec(player:get_player_name(),
 		FORMNAME .. ";" .. minetest.pos_to_string(pos),

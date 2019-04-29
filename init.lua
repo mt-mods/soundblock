@@ -9,7 +9,7 @@ dofile(MP.."/form.lua")
 dofile(MP.."/soundblock.lua")
 
 if minetest.get_modpath("default") then
-  dofile(MP.."/mods/builtin.lua")
+  dofile(MP.."/mods/default.lua")
 end
 
 if minetest.get_modpath("technic") then
