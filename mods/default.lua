@@ -70,13 +70,13 @@ soundblocks.register({
 
 
 soundblocks.register({
-  filename = "default_chest_close"
+  filename = "default_chest_close",
   key = "default_chest_close",
   name = "Chest close"
 })
 
 soundblocks.register({
-  filename = "default_chest_open"
+  filename = "default_chest_open",
   key = "default_chest_open",
   name = "Chest open"
 })
