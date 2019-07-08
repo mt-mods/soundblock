@@ -112,7 +112,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		meta:set_int("interval_min", tonumber(fields.interval_min) or 1)
 		meta:set_int("interval_max", tonumber(fields.interval_max) or 1)
 		meta:set_int("gain", tonumber(fields.gain) or 1)
-		meta:set_int("hear_distance", tonumber(fields.hear_distance) or 16)
+		meta:set_int("hear_distance", math.min(tonumber(fields.hear_distance) or 16, 64))
 		meta:set_int("randomize_position", tonumber(fields.randomize_position) or 0)
 	end
 
