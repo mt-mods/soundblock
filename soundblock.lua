@@ -62,7 +62,7 @@ minetest.register_node("soundblock:block", {
     return true
 	end,
 
-  on_timer = function(pos, elapsed)
+  on_timer = function(pos)
 		local meta = minetest.get_meta(pos)
 		local state = meta:get_string("state")
 
@@ -81,11 +81,13 @@ minetest.register_node("soundblock:block", {
 		timer:start(new_timeout)
   end,
 
-  mesecons = {effector = {
-    action_on = function (pos, node)
-			execute(pos)
-    end
-  }},
+  mesecons = {
+			effector = {
+	    action_on = function (pos)
+				execute(pos)
+	    end
+	  }
+	},
 
   on_rightclick = soundblock.showform
 })

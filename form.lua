@@ -14,7 +14,7 @@ config options:
 
 --]]
 
-soundblock.showform = function(pos, node, player)
+soundblock.showform = function(pos, _, player)
 
 	local meta = minetest.get_meta(pos)
 	local has_override = minetest.check_player_privs(player, "protection_bypass")
@@ -122,7 +122,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			local i = 1
 			local selected_sound_key
 
-			for key, sound in pairs(soundblock.sounds) do
+			for key in pairs(soundblock.sounds) do
 				if selected_id == i then
 					selected_sound_key = key
 				end
