@@ -131,6 +131,11 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 
 			meta:set_string("selected_sound_key", selected_sound_key)
+			local sounddef = soundblock.sounds[selected_sound_key]
+			if sounddef and sounddef.length then
+				meta:set_int("interval_min", sounddef.length)
+				meta:set_int("interval_max", sounddef.length)
+			end
 		end
 	end
 
