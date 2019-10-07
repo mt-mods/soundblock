@@ -17,7 +17,6 @@ config options:
 soundblock.showform = function(pos, node, player)
 
 	local meta = minetest.get_meta(pos)
-	local owner = meta:get_string("owner")
 	local has_override = minetest.check_player_privs(player, "protection_bypass")
 
 	-- check if plain user rightclicks
