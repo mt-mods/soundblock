@@ -30,6 +30,7 @@ soundblock.showform = function(pos, _, player)
 
 	-- sound list
 	local sound_list = "textlist[0,1;4,6;sounds;"
+
 	for key, sound in pairs(soundblock.sounds) do
 		if selected_sound_key == key then
 			selected_id = i
@@ -135,6 +136,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			if sounddef and sounddef.length then
 				meta:set_int("interval_min", sounddef.length)
 				meta:set_int("interval_max", sounddef.length)
+				soundblock.showform(pos, nil, player)
 			end
 		end
 	end
