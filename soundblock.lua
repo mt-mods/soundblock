@@ -1,9 +1,27 @@
 
+local played_sound_cache = {}
+
+local stop_sound = function(pos)
+	local hash = minetest.hash_node_position(pos)
+	if played_sound_cache[hash] then
+		minetest.sound_stop(played_sound_cache[hash])
+		played_sound_cache[hash] = nil
+	end
+end
+
 local execute = function(pos)
 	local meta = minetest.get_meta(pos)
 
+	stop_sound(pos)
+
 	local selected_sound_key = meta:get_string("selected_sound_key")
-	local def = soundblock.sounds[selected_sound_key]
+	local def
+
+	for _, sounddef in ipairs(soundblock.sounds) do
+		if sounddef.key == selected_sound_key then
+			def = sounddef
+		end
+	end
 
 	if def == nil then
 		return
@@ -28,11 +46,14 @@ local execute = function(pos)
 		})
 	end
 
-	minetest.sound_play(filename, {
+	local handle = minetest.sound_play(filename, {
 		pos = play_pos,
 		gain = gain,
 		max_hear_distance = hear_distance
 	})
+
+	local hash = minetest.hash_node_position(pos)
+	played_sound_cache[hash] = handle
 
 end
 
@@ -67,6 +88,7 @@ minetest.register_node("soundblock:block", {
 		local state = meta:get_string("state")
 
 		if state ~= "on" then
+			stop_sound(pos)
 			return
 		end
 
@@ -85,7 +107,10 @@ minetest.register_node("soundblock:block", {
 			effector = {
 	    action_on = function (pos)
 				execute(pos)
-	    end
+	    end,
+			action_off = function(pos)
+				stop_sound(pos)
+			end
 	  }
 	},
 

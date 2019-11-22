@@ -11,5 +11,11 @@ def = {
 --]]
 
 soundblock.register = function(def)
-  soundblock.sounds[def.key] = def
+  table.insert(soundblock.sounds, def)
 end
+
+minetest.register_on_mods_loaded(function()
+  table.sort(soundblock.sounds, function(a, b)
+    return a.key < b.key
+  end)
+end)

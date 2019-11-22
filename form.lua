@@ -26,18 +26,16 @@ soundblock.showform = function(pos, _, player)
 
 	local selected_sound_key = meta:get_string("selected_sound_key")
 	local selected_id = 1
-	local i = 1
 
 	-- sound list
 	local sound_list = "textlist[0,1;4,6;sounds;"
 
-	for key, sound in pairs(soundblock.sounds) do
-		if selected_sound_key == key then
+	for i, sounddef in ipairs(soundblock.sounds) do
+		if selected_sound_key == sounddef.key then
 			selected_id = i
 		end
 
-		i = i + 1
-		sound_list = sound_list .. minetest.formspec_escape(sound.name) .. ","
+		sound_list = sound_list .. minetest.formspec_escape(sounddef.name) .. ","
 	end
 	sound_list = sound_list:sub(1, #sound_list-1)
 	sound_list = sound_list .. ";" .. selected_id .. "]";
@@ -89,8 +87,9 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 
 	local timer = minetest.get_node_timer(pos)
+	local state = meta:get_string("state")
+
 	if fields.toggle_state then
-		local state = meta:get_string("state")
 		if state == "on" then
 			state = "mesecons"
 			timer:stop()
@@ -101,7 +100,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 
 		else -- off
 			state = "on"
-			timer:start(0)
 
 		end
 
@@ -117,22 +115,13 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 
 	if fields.sounds then
+		minetest.chat_send_all("XXX:" .. fields.sounds)
 		parts = fields.sounds:split(":")
 		if parts[1] == "CHG" then
 			local selected_id = tonumber(parts[2])
-			local i = 1
-			local selected_sound_key
+			local sounddef = soundblock.sounds[selected_id]
 
-			for key in pairs(soundblock.sounds) do
-				if selected_id == i then
-					selected_sound_key = key
-				end
-
-				i = i + 1
-			end
-
-			meta:set_string("selected_sound_key", selected_sound_key)
-			local sounddef = soundblock.sounds[selected_sound_key]
+			meta:set_string("selected_sound_key", sounddef.key)
 			if sounddef and sounddef.length then
 				meta:set_int("interval_min", sounddef.length)
 				meta:set_int("interval_max", sounddef.length)
@@ -140,5 +129,10 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 		end
 	end
+
+	if state == "on" then
+		timer:start(0)
+	end
+
 
 end)
