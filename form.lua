@@ -115,7 +115,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 
 	if fields.sounds then
-		minetest.chat_send_all("XXX:" .. fields.sounds)
 		parts = fields.sounds:split(":")
 		if parts[1] == "CHG" then
 			local selected_id = tonumber(parts[2])
