@@ -97,9 +97,19 @@ minetest.register_node("soundblock:block", {
   mesecons = {
 			effector = {
 	    action_on = function (pos)
-				execute(pos)
+				local meta = minetest.get_meta(pos)
+				meta:set_string("state", "on")
+
+				local timer = minetest.get_node_timer(pos)
+				timer:start(0)
 	    end,
 			action_off = function(pos)
+				local meta = minetest.get_meta(pos)
+				meta:set_string("state", "off")
+
+				local timer = minetest.get_node_timer(pos)
+				timer:stop()
+
 				stop_sound(pos)
 			end
 	  }

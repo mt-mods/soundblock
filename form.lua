@@ -91,10 +91,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 
 	if fields.toggle_state then
 		if state == "on" then
-			state = "mesecons"
-			timer:stop()
-
-		elseif state == "mesecons" then
 			state = "off"
 			timer:stop()
 
@@ -129,9 +125,5 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		end
 	end
 
-	if state == "on" then
-		timer:start(0)
-	end
-
-
+	timer:start(0)
 end)
