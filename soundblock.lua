@@ -74,15 +74,6 @@ minetest.register_node("soundblock:block", {
 		meta:set_int("randomize_position", 0)
 	end,
 
-  can_dig = function(pos,player)
-		if player and player:is_player() and minetest.is_protected(pos, player:get_player_name()) then
-			-- protected
-			return false
-		end
-
-    return true
-	end,
-
   on_timer = function(pos)
 		local meta = minetest.get_meta(pos)
 		local state = meta:get_string("state")

@@ -7,6 +7,7 @@ local MP = minetest.get_modpath("soundblock")
 dofile(MP.."/api.lua")
 dofile(MP.."/form.lua")
 dofile(MP.."/soundblock.lua")
+dofile(MP.."/recipe.lua")
 
 if minetest.get_modpath("default") then
   dofile(MP.."/mods/default.lua")
