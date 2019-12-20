@@ -13,6 +13,10 @@ if minetest.get_modpath("default") then
   dofile(MP.."/mods/default.lua")
 end
 
+if minetest.get_modpath("horror") then
+  dofile(MP.."/mods/horror.lua")
+end
+
 if minetest.get_modpath("doors") then
   dofile(MP.."/mods/doors.lua")
 end
