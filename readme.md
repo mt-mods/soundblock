@@ -27,7 +27,7 @@ soundblocks.register({
 
 # Digiline api
 
-``lua
+```lua
 if event.type == "program" then
  digiline_send("soundblock", {
   command = "play",
