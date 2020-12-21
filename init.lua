@@ -6,6 +6,7 @@ soundblock = {
 local MP = minetest.get_modpath("soundblock")
 dofile(MP.."/api.lua")
 dofile(MP.."/form.lua")
+dofile(MP.."/digiline.lua")
 dofile(MP.."/soundblock.lua")
 dofile(MP.."/recipe.lua")
 

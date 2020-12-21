@@ -1,7 +1,0 @@
-default?
-doors?
-horror?
-mesecons?
-technic?
-ambience?
-mobs_monster?

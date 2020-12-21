@@ -115,5 +115,16 @@ minetest.register_node("soundblock:block", {
 	  }
 	},
 
+	digiline = {
+		receptor = {
+			rules = soundblock.digiline_rules,
+			action = function() end
+		},
+		effector = {
+			rules = soundblock.digiline_rules,
+			action = soundblock.digiline_effector
+		}
+	},
+
   on_rightclick = soundblock.showform
 })

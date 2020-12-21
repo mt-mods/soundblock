@@ -25,7 +25,22 @@ soundblocks.register({
 
 ```
 
+# Digiline api
 
+``lua
+if event.type == "program" then
+ digiline_send("soundblock", {
+  command = "play",
+	name = "default_grass_footstep.1.ogg",
+	-- relative position (optional)
+	pos = { x=0, y=10, z=0 },
+	-- gain, defaults to 1
+	gain = 1,
+	-- max_hear_distance, defaults to 10
+	hear_distance = 32
+ })
+end
+```
 
 # License
 

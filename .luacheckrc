@@ -10,6 +10,9 @@ read_globals = {
 
 	-- Minetest
 	"minetest",
-	"vector", "ItemStack"
+	"vector", "ItemStack",
+
+	-- mods
+	"digilines"
 
 }
