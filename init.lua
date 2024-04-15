@@ -10,28 +10,12 @@ dofile(MP.."/digiline.lua")
 dofile(MP.."/soundblock.lua")
 dofile(MP.."/recipe.lua")
 
-if minetest.get_modpath("default") then
-  dofile(MP.."/mods/default.lua")
-end
+local optional_mods = {"default", "ambience", "doors", "horror", "mobs_monster", "technic"}
 
-if minetest.get_modpath("horror") then
-  dofile(MP.."/mods/horror.lua")
-end
-
-if minetest.get_modpath("doors") then
-  dofile(MP.."/mods/doors.lua")
-end
-
-if minetest.get_modpath("technic") then
-  dofile(MP.."/mods/technic.lua")
-end
-
-if minetest.get_modpath("ambience") then
-  dofile(MP.."/mods/ambience.lua")
-end
-
-if minetest.get_modpath("mobs_monster") then
-  dofile(MP.."/mods/mobs_monster.lua")
+for _, m in ipairs(optional_mods) do
+  if minetest.get_modpath(m) then
+    dofile(MP .. "/mods/" .. m .. ".lua")
+  end
 end
 
 print("[OK] soundblock")
